@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: kitapyurdum-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: kitapyurdum-customer-service
+          uri: lb://KITAPYURDUM-CUSTOMER-SERVICE
+          predicates:
+            - Path=/api/v1/customers/**
+        - id: kitapyurdum-service
+          uri: lb://KITAPYURDUM-SERVICE
+          predicates:
+            - Path=/api/v1/products/**, /api/v1/orders/**, /api/v1/products/**, /api/v1/publishers/**
+server:
+  port: 8080
+
